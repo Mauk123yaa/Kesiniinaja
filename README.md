@@ -1,2 +1,1022 @@
-# Kesiniinaja
-Landing page resmi KesiniinAja
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KesiniinAja | Support Akademik Mahasiswa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #1B2B5E;
+    --navy-light: #2D4080;
+    --navy-dark: #111C3E;
+    --cream: #FAF7F2;
+    --cream-deep: #F2EDE3;
+    --gold: #C9962B;
+    --gold-light: #E8B84B;
+    --text: #1A1A2E;
+    --muted: #5C6480;
+    --white: #FFFFFF;
+    --border: rgba(27, 43, 94, 0.12);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(250, 247, 242, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    position: relative;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    text-decoration: none;
+    letter-spacing: -0.02em;
+  }
+  .logo span { color: var(--gold); }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--navy); }
+  .btn-nav {
+    background: var(--navy);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: background .2s !important;
+  }
+  .btn-nav:hover { background: var(--navy-light) !important; }
+  .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+  .hamburger span { display: block; width: 22px; height: 2px; background: var(--navy); margin: 5px 0; transition: .3s; }
+
+  .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 5rem 2rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(201, 150, 43, 0.12);
+    border: 1px solid rgba(201, 150, 43, 0.3);
+    color: #8B6210;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 6px 14px;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .hero-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3rem);
+    font-weight: 700;
+    color: var(--navy-dark);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero p {
+    font-size: 1.0625rem;
+    color: var(--muted);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--navy);
+    color: var(--white);
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--navy);
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: background .2s;
+    border: 1.5px solid var(--navy);
+    cursor: pointer;
+  }
+  .btn-secondary:hover { background: rgba(27, 43, 94, 0.06); }
+  .wa-icon { font-size: 1.1em; }
+
+  .hero-stats {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+  .stat-item {}
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--navy);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  .hero-visual {
+    position: relative;
+  }
+  .hero-card {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 40px rgba(27, 43, 94, 0.08);
+  }
+  .hero-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .avatar-stack { display: flex; }
+  .avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--white);
+    margin-left: -8px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+  }
+  .avatar:first-child { margin-left: 0; }
+  .a1 { background: #3B5BDB; }
+  .a2 { background: #C9962B; }
+  .a3 { background: #2F9E44; }
+  .a4 { background: #E03131; }
+  .card-meta { font-size: 0.8rem; color: var(--muted); }
+  .card-meta strong { display: block; color: var(--text); font-size: 0.875rem; font-weight: 600; }
+
+  .progress-item { margin-bottom: 1rem; }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-bottom: 6px;
+    font-weight: 500;
+  }
+  .progress-bar { height: 6px; background: var(--cream-deep); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 100px; background: var(--navy); transition: width 1s ease; }
+  .progress-fill.gold { background: var(--gold); }
+  .progress-fill.green { background: #2F9E44; }
+
+  .floating-tag {
+    position: absolute;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--navy);
+    box-shadow: 0 4px 16px rgba(27, 43, 94, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .tag-dot { width: 8px; height: 8px; border-radius: 50%; background: #2F9E44; }
+  .tag-top { top: -16px; right: 16px; }
+  .tag-bot { bottom: -16px; left: 20px; }
+  .tag-icon { font-size: 1rem; }
+
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--navy-dark);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+  }
+  .section-sub {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-top: 0.75rem;
+    max-width: 560px;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .section-head { margin-bottom: 3rem; }
+
+  .services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .service-card {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    transition: transform .2s, box-shadow .2s;
+    cursor: default;
+  }
+  .service-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(27, 43, 94, 0.08);
+  }
+  .service-icon {
+    width: 44px;
+    height: 44px;
+    background: rgba(27, 43, 94, 0.08);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+  .service-card h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 0.5rem;
+  }
+  .service-card p {
+    font-size: 0.84rem;
+    color: var(--muted);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  .how-bg { background: var(--navy-dark); }
+  .how-bg .section-label { color: var(--gold-light); }
+  .how-bg .section-title { color: var(--white); }
+  .how-bg .section-sub { color: rgba(255,255,255,0.55); }
+  .steps { display: flex; gap: 0; position: relative; }
+  .steps::before {
+    content: '';
+    position: absolute;
+    top: 24px;
+    left: calc(100% / 10);
+    right: calc(100% / 10);
+    height: 1px;
+    background: rgba(255,255,255,0.15);
+  }
+  .step {
+    flex: 1;
+    text-align: center;
+    padding: 0 0.75rem;
+    position: relative;
+  }
+  .step-num {
+    width: 48px;
+    height: 48px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--gold-light);
+    margin: 0 auto 1rem;
+    position: relative;
+    z-index: 1;
+    background: var(--navy-dark);
+  }
+  .step h4 {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+  .step p { font-size: 0.8rem; color: rgba(255,255,255,0.5); line-height: 1.5; font-weight: 300; }
+
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  .adv-item {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: box-shadow .2s;
+  }
+  .adv-item:hover { box-shadow: 0 4px 20px rgba(27,43,94,0.07); }
+  .adv-icon-wrap {
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    background: rgba(201, 150, 43, 0.1);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+  }
+  .adv-item h4 {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--navy-dark);
+    margin-bottom: 0.4rem;
+  }
+  .adv-item p { font-size: 0.8375rem; color: var(--muted); line-height: 1.6; font-weight: 300; }
+
+  .testi-bg { background: var(--cream-deep); }
+  .testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .testi-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+  .stars { color: var(--gold); font-size: 0.85rem; margin-bottom: 1rem; letter-spacing: 2px; }
+  .testi-text {
+    font-size: 0.875rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    font-weight: 300;
+  }
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .testi-av {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+  }
+  .testi-name { font-size: 0.875rem; font-weight: 600; color: var(--navy); }
+  .testi-info { font-size: 0.775rem; color: var(--muted); margin-top: 1px; }
+
+  .faq-list { max-width: 720px; width: 100%; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 0;
+    font-family: inherit;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--navy-dark);
+    text-align: left;
+    gap: 1rem;
+  }
+  .faq-q:hover { color: var(--gold); }
+  .faq-icon {
+    font-size: 1.2rem;
+    color: var(--gold);
+    font-weight: 300;
+    min-width: 20px;
+    transition: transform .25s;
+    line-height: 1;
+  }
+  .faq-icon.open { transform: rotate(45deg); }
+  .faq-a {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.75;
+    padding-bottom: 1.25rem;
+    display: none;
+    font-weight: 300;
+  }
+  .faq-a.open { display: block; }
+
+  .cta-section { background: var(--navy); padding: 5rem 2rem; }
+  .cta-inner {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .cta-inner .section-label { color: var(--gold-light); }
+  .cta-inner h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.75rem, 3vw, 2.4rem);
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    margin: 0.5rem 0 1rem;
+  }
+  .cta-inner p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.6);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  .cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--gold);
+    color: var(--white);
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: background .2s, transform .15s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-outline-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--white);
+    padding: 0.875rem 1.75rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: background .2s;
+    border: 1.5px solid rgba(255,255,255,0.35);
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,0.08); }
+
+  footer {
+    background: var(--navy-dark);
+    padding: 3rem 2rem 2rem;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-inner { max-width: 1100px; margin: 0 auto; }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 2rem;
+  }
+  .footer-brand .logo { font-size: 1.2rem; color: var(--white); }
+  .footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.75rem; font-weight: 300; max-width: 320px; }
+  .footer-col h5 { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .footer-col ul { list-style: none; }
+  .footer-col li { margin-bottom: 0.6rem; }
+  .footer-col a { font-size: 0.83rem; color: rgba(255,255,255,0.45); text-decoration: none; transition: color .2s; }
+  .footer-col a:hover { color: rgba(255,255,255,0.8); }
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.3); }
+  .disclaimer {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.2);
+    max-width: 560px;
+    line-height: 1.5;
+  }
+
+  .divider-line {
+    height: 1px;
+    background: var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .testi-grid { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .adv-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    #faq .faq-wrap {
+      grid-template-columns: 1fr !important;
+      gap: 2rem !important;
+    }
+  }
+  @media (max-width: 640px) {
+    .hamburger { display: block; }
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      align-items: flex-start;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      background: var(--cream);
+      padding: 1rem 2rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .nav-links.show { display: flex; }
+    .services-grid { grid-template-columns: 1fr; }
+    .steps { flex-wrap: wrap; gap: 2rem; }
+    .steps::before { display: none; }
+    .step { flex: 0 0 45%; }
+    .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .footer-bottom { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="logo">Kesiniin<span>Aja</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#layanan">Layanan</a></li>
+      <li><a href="#cara-kerja">Cara Kerja</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#pesan" class="btn-nav">Pesan Sekarang</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-left fade-up">
+    <span class="hero-badge">Support Akademik Mahasiswa</span>
+    <h1>Kerjaan kuliah terasa berat?<br><em>KesiniinAja dulu.</em></h1>
+    <p>Kami bantu mahasiswa menangani kebutuhan akademik dengan proses yang rapi, jelas, dan terarah. Mulai dari jurnal, makalah, PPT, skripsi, layout, sampai bimbingan akademik.</p>
+    <div class="hero-actions">
+      <a href="https://forms.gle/FORM-ANDA" class="btn-primary" target="_blank">Isi Form Pemesanan</a>
+      <a href="https://wa.me/6281234567890" class="btn-secondary" target="_blank">
+        <span class="wa-icon">💬</span> Chat WhatsApp
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-num">Jelas</span>
+        <span class="stat-label">Alur kerja mudah dipahami</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Rapi</span>
+        <span class="stat-label">Detail teknis diperhatikan</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-num">Terarah</span>
+        <span class="stat-label">Fokus pada kebutuhan Anda</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual fade-up" style="transition-delay:.15s">
+    <div style="position:relative; padding: 20px;">
+      <div class="floating-tag tag-top">
+        <span class="tag-dot"></span> Support aktif berjalan
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-header">
+          <div class="avatar-stack">
+            <div class="avatar a1">JR</div>
+            <div class="avatar a2">MK</div>
+            <div class="avatar a3">PT</div>
+            <div class="avatar a4">+</div>
+          </div>
+          <div class="card-meta">
+            <strong>Progress Layanan</strong>
+            Kebutuhan mahasiswa minggu ini
+          </div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Revisi Draft Jurnal</span><span>85%</span></div>
+          <div class="progress-bar"><div class="progress-fill" style="width:85%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Desain PPT Seminar</span><span>70%</span></div>
+          <div class="progress-bar"><div class="progress-fill gold" style="width:70%"></div></div>
+        </div>
+        <div class="progress-item">
+          <div class="progress-label"><span>Layout Skripsi Final</span><span>100%</span></div>
+          <div class="progress-bar"><div class="progress-fill green" style="width:100%"></div></div>
+        </div>
+        <div style="margin-top:1.25rem; padding:1rem; background: rgba(201,150,43,0.08); border-radius:8px; border:1px solid rgba(201,150,43,0.2);">
+          <p style="font-size:.8rem; color:#7A5B0F; font-weight:600; margin-bottom:3px;">✓ Sesi Bimbingan Akademik</p>
+          <p style="font-size:.75rem; color:#9A7A30; font-weight:300;">Diskusi terjadwal dan fleksibel sesuai kebutuhan</p>
+        </div>
+      </div>
+      <div class="floating-tag tag-bot">
+        <span class="tag-icon">🎓</span> Lebih siap hadapi deadline
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider-line"></div>
+
+<section id="layanan" class="services">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <p class="section-label">Layanan Kami</p>
+      <h2 class="section-title">Enam layanan utama<br>untuk kebutuhan akademik Anda</h2>
+      <p class="section-sub">KesiniinAja hadir untuk membantu mahasiswa menjalani proses akademik dengan lebih ringan, lebih rapi, dan lebih percaya diri. Fokus kami adalah support, pendampingan, dan perapihan hasil kerja Anda.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon">📘</div>
+        <h3>Klinik Jurnal</h3>
+        <p>Pendampingan untuk penyusunan, review, editing, dan perapihan naskah jurnal agar lebih siap diajukan atau dipresentasikan.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.05s">
+        <div class="service-icon">📝</div>
+        <h3>Makalah Siap Presentasi</h3>
+        <p>Bantuan untuk merapikan struktur, isi, bahasa, dan tampilan makalah agar lebih enak dibaca dan siap dibahas di kelas.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.1s">
+        <div class="service-icon">📊</div>
+        <h3>Studio PPT Akademik</h3>
+        <p>Pembuatan slide yang ringkas, visual, dan nyaman dipresentasikan untuk seminar, tugas, sidang, atau presentasi kelas.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.15s">
+        <div class="service-icon">🎓</div>
+        <h3>Pendampingan Skripsi</h3>
+        <p>Support untuk skripsi dari tahap awal sampai akhir, mulai dari arah pembahasan, revisi, struktur isi, sampai persiapan menghadapi sidang.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.2s">
+        <div class="service-icon">📐</div>
+        <h3>Layout & Formatting</h3>
+        <p>Perapihan margin, penomoran, daftar isi, daftar pustaka, tabel, gambar, dan format dokumen sesuai aturan kampus atau dosen.</p>
+      </div>
+      <div class="service-card fade-up" style="transition-delay:.25s">
+        <div class="service-icon">💬</div>
+        <h3>Bimbingan Akademik</h3>
+        <p>Layanan diskusi dan arahan akademik untuk membantu Anda lebih paham, lebih siap, dan lebih mantap menjalani proses perkuliahan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="cara-kerja" class="how-bg">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <p class="section-label">Cara Kerja</p>
+      <h2 class="section-title">Alurnya sederhana,<br>prosesnya tetap rapi</h2>
+      <p class="section-sub">Anda cukup kirim kebutuhan, kami bantu arahkan sampai prosesnya terasa lebih ringan.</p>
+    </div>
+    <div class="steps fade-up">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Isi Form</h4>
+        <p>Masukkan kebutuhan, jenis layanan, dan deadline Anda</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Kami Review</h4>
+        <p>Tim kami membaca kebutuhan dan menentukan scope support</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Konfirmasi</h4>
+        <p>Detail layanan dan alur pengerjaan dijelaskan lewat WhatsApp</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Proses Jalan</h4>
+        <p>Pendampingan dimulai sesuai kebutuhan dan target waktu</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <h4>Finalisasi</h4>
+        <p>Hasil dirapikan dan revisi dilakukan sesuai kesepakatan</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="keunggulan">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <p class="section-label">Keunggulan</p>
+      <h2 class="section-title">Kenapa banyak mahasiswa<br>lebih nyaman lewat sini?</h2>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-item fade-up">
+        <div class="adv-icon-wrap">⚡</div>
+        <div>
+          <h4>Respons Cepat</h4>
+          <p>Kebutuhan Anda ditangani dengan komunikasi yang aktif dan tidak bertele-tele, jadi proses bisa segera jalan.</p>
+        </div>
+      </div>
+      <div class="adv-item fade-up" style="transition-delay:.05s">
+        <div class="adv-icon-wrap">🔒</div>
+        <div>
+          <h4>Privasi Terjaga</h4>
+          <p>File, data, dan detail kebutuhan Anda diperlakukan secara aman dan tidak dibagikan ke pihak lain.</p>
+        </div>
+      </div>
+      <div class="adv-item fade-up" style="transition-delay:.1s">
+        <div class="adv-icon-wrap">🎯</div>
+        <div>
+          <h4>Lebih Tepat Sasaran</h4>
+          <p>Setiap layanan difokuskan pada hasil yang Anda butuhkan, bukan jawaban generik yang tidak nyambung.</p>
+        </div>
+      </div>
+      <div class="adv-item fade-up" style="transition-delay:.15s">
+        <div class="adv-icon-wrap">✅</div>
+        <div>
+          <h4>Proses Aman dan Jelas</h4>
+          <p>Kami bergerak sebagai support akademik. Fokusnya membantu, mengarahkan, dan merapikan, bukan menggantikan peran Anda.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="testi-bg">
+  <div class="section-inner">
+    <div class="section-head fade-up">
+      <p class="section-label">Testimoni</p>
+      <h2 class="section-title">Cerita dari mereka<br>yang sudah pakai KesiniinAja</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card fade-up">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Awalnya bingung banget ngerapihin jurnal. Setelah dibantu di sini, isi jadi lebih tertata dan saya jadi lebih paham apa yang harus dibenerin."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#3B5BDB">AS</div>
+          <div>
+            <p class="testi-name">Alya S.</p>
+            <p class="testi-info">Mahasiswa S1</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:.08s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"PPT seminar saya jadi jauh lebih enak dilihat. Isinya tetap saya yang buat, tapi tampilannya jadi lebih meyakinkan waktu presentasi."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#2F9E44">DN</div>
+          <div>
+            <p class="testi-name">Dina N.</p>
+            <p class="testi-info">Mahasiswa S2</p>
+          </div>
+        </div>
+      </div>
+      <div class="testi-card fade-up" style="transition-delay:.16s">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Bagian layout skripsi yang tadinya bikin pusing akhirnya beres. Saya juga dibantu lebih siap buat konsultasi sama dosen."</p>
+        <div class="testi-author">
+          <div class="testi-av" style="background:#C9962B">RF</div>
+          <div>
+            <p class="testi-name">Rafi F.</p>
+            <p class="testi-info">Mahasiswa Tingkat Akhir</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="section-inner">
+    <div class="faq-wrap" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:start;">
+      <div class="fade-up">
+        <p class="section-label">FAQ</p>
+        <h2 class="section-title">Pertanyaan yang sering muncul</h2>
+        <p class="section-sub" style="margin-top:.75rem;">Kalau masih ada yang ingin ditanyakan, langsung hubungi kami lewat WhatsApp.</p>
+        <a href="https://wa.me/6281234567890" class="btn-secondary" style="display:inline-flex; margin-top:1.5rem;" target="_blank">
+          💬 Chat dengan kami
+        </a>
+      </div>
+      <div class="faq-list fade-up" style="transition-delay:.1s">
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Layanan apa saja yang tersedia?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Kami menyediakan enam layanan utama, yaitu Klinik Jurnal, Makalah Siap Presentasi, Studio PPT Akademik, Pendampingan Skripsi, Layout & Formatting, dan Bimbingan Akademik.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Apakah ini jasa joki?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Bukan. KesiniinAja adalah layanan support akademik. Kami membantu memberi arahan, review, perapihan, dan pendampingan agar Anda lebih siap menjalani proses akademik sendiri.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Apakah bisa revisi?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Bisa. Revisi mengikuti scope layanan yang sudah disepakati di awal, jadi alurnya jelas dan tidak membingungkan kedua belah pihak.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Bagaimana cara order?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Anda bisa isi form pemesanan atau langsung chat WhatsApp. Setelah itu tim kami akan mereview kebutuhan Anda dan menjelaskan langkah berikutnya.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q" onclick="toggleFaq(this)">
+            Apakah bisa untuk kebutuhan mendesak?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-a">Bisa, selama kapasitas tim masih tersedia. Kebutuhan yang mepet deadline tetap bisa dikonsultasikan dulu agar kami cek kemungkinan prosesnya.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section" id="pesan">
+  <div class="cta-inner fade-up">
+    <p class="section-label">Mulai Sekarang</p>
+    <h2>Kalau tugas mulai bikin pusing,<br>KesiniinAja dulu.</h2>
+    <p>Isi form pemesanan atau hubungi WhatsApp kami untuk mulai konsultasi. Kami bantu pilihkan layanan yang paling pas untuk kebutuhan Anda.</p>
+    <div class="cta-actions">
+      <a href="https://forms.gle/FORM-ANDA" class="btn-gold" target="_blank">Isi Form Pemesanan</a>
+      <a href="https://wa.me/6281234567890" class="btn-outline-white" target="_blank">
+        💬 WhatsApp Langsung
+      </a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="logo">Kesiniin<span style="color:var(--gold)">Aja</span></a>
+        <p>Support akademik untuk mahasiswa yang butuh proses lebih rapi, lebih jelas, dan lebih terarah dalam menghadapi tugas, presentasi, dan karya ilmiah.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Layanan</h5>
+        <ul>
+          <li><a href="#layanan">Klinik Jurnal</a></li>
+          <li><a href="#layanan">Makalah Siap Presentasi</a></li>
+          <li><a href="#layanan">Studio PPT Akademik</a></li>
+          <li><a href="#layanan">Pendampingan Skripsi</a></li>
+          <li><a href="#layanan">Layout & Formatting</a></li>
+          <li><a href="#layanan">Bimbingan Akademik</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Informasi</h5>
+        <ul>
+          <li><a href="#cara-kerja">Cara Kerja</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a></li>
+          <li><a href="https://forms.gle/FORM-ANDA" target="_blank">Form Pemesanan</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 KesiniinAja. Seluruh hak cipta dilindungi.</p>
+      <p class="disclaimer">Disclaimer: KesiniinAja adalah layanan support, pendampingan, konsultasi, dan perapihan akademik. Kami tidak menyediakan layanan pengerjaan tugas atau karya ilmiah untuk diserahkan atas nama klien.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(btn) {
+  const ans = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = ans.classList.contains('open');
+
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('open'));
+
+  if (!isOpen) {
+    ans.classList.add('open');
+    icon.classList.add('open');
+  }
+}
+
+function toggleMenu() {
+  const links = document.getElementById('navLinks');
+  links.classList.toggle('show');
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
