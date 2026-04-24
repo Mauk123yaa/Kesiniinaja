@@ -256,21 +256,69 @@
   .section-head { margin-bottom: 3rem; }
 
   .services { background: var(--white); }
-  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 1rem;
+    align-items: start;
+  }
   .service-card {
     background: var(--cream); border: 1px solid var(--border);
-    border-radius: 12px; padding: 1.75rem;
-    transition: transform .2s, box-shadow .2s; cursor: default;
+    border-radius: 16px; padding: 1.5rem;
+    transition: transform .2s, box-shadow .2s;
+    position: relative;
+    display: flex; flex-direction: column;
+    margin-top: 14px;
   }
-  .service-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(27, 43, 94, 0.08); }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27, 43, 94, 0.1); }
+  .service-card.featured {
+    background: var(--navy-dark);
+    border: 2px solid var(--navy);
+    box-shadow: 0 8px 32px rgba(27, 43, 94, 0.2);
+    margin-top: 0;
+  }
+  .service-card.featured:hover { box-shadow: 0 16px 48px rgba(27, 43, 94, 0.3); }
+  .popular-badge {
+    position: absolute;
+    top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold);
+    color: var(--white);
+    font-size: 0.72rem; font-weight: 700;
+    padding: 4px 14px; border-radius: 100px;
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 5px;
+  }
   .service-icon {
     width: 44px; height: 44px;
     background: rgba(27, 43, 94, 0.08); border-radius: 10px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 1.2rem; margin-bottom: 1rem;
+    font-size: 1.3rem; margin-bottom: 1rem;
   }
-  .service-card h3 { font-size: 0.95rem; font-weight: 600; color: var(--navy-dark); margin-bottom: 0.5rem; }
-  .service-card p { font-size: 0.84rem; color: var(--muted); line-height: 1.65; font-weight: 300; }
+  .service-card.featured .service-icon { background: rgba(255,255,255,0.1); }
+  .service-card h3 { font-size: 0.95rem; font-weight: 700; color: var(--navy-dark); margin-bottom: 0.5rem; }
+  .service-card.featured h3 { color: var(--white); }
+  .service-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.65; font-weight: 300; flex-grow: 1; }
+  .service-card.featured p { color: rgba(255,255,255,0.65); }
+  .service-price {
+    font-size: 0.875rem; font-weight: 700;
+    color: var(--navy);
+    margin-top: 1.25rem; margin-bottom: 1rem;
+  }
+  .service-card.featured .service-price { color: var(--gold-light); }
+  .btn-order {
+    display: block; text-align: center;
+    padding: 0.625rem 1rem;
+    border-radius: 8px; border: 1.5px solid var(--navy);
+    color: var(--navy); background: transparent;
+    font-size: 0.85rem; font-weight: 600;
+    text-decoration: none;
+    transition: background .2s, color .2s;
+  }
+  .btn-order:hover { background: var(--navy); color: var(--white); }
+  .service-card.featured .btn-order {
+    background: var(--gold); border-color: var(--gold); color: var(--white);
+  }
+  .service-card.featured .btn-order:hover { background: var(--gold-light); border-color: var(--gold-light); }
 
   .how-bg { background: var(--navy-dark); }
   .how-bg .section-label { color: var(--gold-light); }
@@ -389,7 +437,7 @@
   @media (max-width: 900px) {
     .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 3rem; }
     .hero-visual { display: none; }
-    .services-grid { grid-template-columns: repeat(2, 1fr); }
+    .services-grid { grid-template-columns: repeat(3, 1fr); }
     .testi-grid { grid-template-columns: 1fr; }
     .footer-grid { grid-template-columns: 1fr 1fr; }
     .adv-grid { grid-template-columns: 1fr; }
@@ -407,6 +455,8 @@
     }
     .nav-links.show { display: flex; }
     .services-grid { grid-template-columns: 1fr; }
+    .service-card { margin-top: 0; }
+    .service-card.featured { margin-top: 14px; }
     .steps { flex-wrap: wrap; gap: 2rem; }
     .steps::before { display: none; }
     .step { flex: 0 0 45%; }
@@ -437,9 +487,8 @@
     <span class="hero-badge">Support Akademik Mahasiswa</span>
     <h1>Kerjaan kuliah terasa berat?<br><em>KesiniinAja dulu.</em></h1>
     <p>Kami bantu mahasiswa menangani kebutuhan akademik dengan proses yang rapi, jelas, dan terarah. Mulai dari jurnal, makalah, PPT, skripsi, layout, sampai bimbingan akademik.</p>
-    <div class="hero-actions">
-      <a href="https://forms.gle/xCg6nfavvyhHte4o6" class="btn-primary" target="_blank">Isi Form Pemesanan</a>
-      <a href="https://wa.me/6285776269621" class="btn-secondary" target="_blank">
+    <div class="hero-actions"
+      <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20konsultasi%3A%0A%0ALayanan%20yang%20dibutuhkan%3A%0ADetail%20singkat%3A%0ADeadline%3A" class="btn-secondary" target="_blank">
         <span class="wa-icon">💬</span> Chat WhatsApp
       </a>
     </div>
@@ -504,41 +553,47 @@
 
 <section id="layanan" class="services">
   <div class="section-inner">
-    <div class="section-head fade-up">
+    <div class="section-head fade-up" style="text-align:center;">
       <p class="section-label">Layanan Kami</p>
-      <h2 class="section-title">Enam layanan utama<br>untuk kebutuhan akademik Anda</h2>
-      <p class="section-sub">KesiniinAja hadir untuk membantu mahasiswa menjalani proses akademik dengan lebih ringan, lebih rapi, dan lebih percaya diri. Fokus kami adalah support, pendampingan, dan perapihan hasil kerja Anda.</p>
+      <h2 class="section-title">Paket Harga</h2>
+      <p class="section-sub" style="max-width:100%;">Pilih layanan sesuai kebutuhan akademikmu</p>
     </div>
     <div class="services-grid">
       <div class="service-card fade-up">
-        <div class="service-icon">📘</div>
-        <h3>Klinik Jurnal</h3>
-        <p>Pendampingan untuk penyusunan, review, editing, dan perapihan naskah jurnal agar lebih siap diajukan atau dipresentasikan.</p>
+        <div class="service-icon">📚</div>
+        <h3>Tugas Kuliah</h3>
+        <p>Essay, laporan, analisis data, tugas harian semua mata kuliah.</p>
+        <div class="service-price">Rp 20.000 – 50.000</div>
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ALayanan%3A%20Tugas%20Kuliah%0AJenis%20tugas%20%28essay/laporan/analisis/dll%29%3A%0AMata%20kuliah%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
-      <div class="service-card fade-up" style="transition-delay:.05s">
-        <div class="service-icon">📝</div>
-        <h3>Makalah Siap Presentasi</h3>
-        <p>Bantuan untuk merapikan struktur, isi, bahasa, dan tampilan makalah agar lebih enak dibaca dan siap dibahas di kelas.</p>
+      <div class="service-card fade-up" style="transition-delay:.06s">
+        <div class="service-icon">📄</div>
+        <h3>Makalah</h3>
+        <p>Penulisan makalah ilmiah dengan referensi terpercaya dan format baku.</p>
+        <div class="service-price">Negotiable</div>
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ALayanan%3A%20Makalah%0ATopik%20/%20judul%3A%0AJumlah%20halaman%20%28estimasi%29%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
-      <div class="service-card fade-up" style="transition-delay:.1s">
-        <div class="service-icon">📊</div>
-        <h3>Studio PPT Akademik</h3>
-        <p>Pembuatan slide yang ringkas, visual, dan nyaman dipresentasikan untuk seminar, tugas, sidang, atau presentasi kelas.</p>
-      </div>
-      <div class="service-card fade-up" style="transition-delay:.15s">
+      <div class="service-card featured fade-up" style="transition-delay:.12s">
+        <div class="popular-badge">⭐ Terpopuler</div>
         <div class="service-icon">🎓</div>
-        <h3>Pendampingan Skripsi</h3>
-        <p>Support untuk skripsi dari tahap awal sampai akhir, mulai dari arah pembahasan, revisi, struktur isi, sampai persiapan menghadapi sidang.</p>
+        <h3>Skripsi / TA</h3>
+        <p>Pendampingan dan pengerjaan skripsi per bab dengan analisis mendalam.</p>
+        <div class="service-price">Rp 500.000 / bab</div>
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ALayanan%3A%20Skripsi%20/%20TA%0AJudul%20/%20topik%3A%0ABab%20yang%20dibutuhkan%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
-      <div class="service-card fade-up" style="transition-delay:.2s">
-        <div class="service-icon">📐</div>
-        <h3>Layout & Formatting</h3>
-        <p>Perapihan margin, penomoran, daftar isi, daftar pustaka, tabel, gambar, dan format dokumen sesuai aturan kampus atau dosen.</p>
+      <div class="service-card fade-up" style="transition-delay:.18s">
+        <div class="service-icon">💡</div>
+        <h3>Brainstorming</h3>
+        <p>Bantu kamu menemukan ide, topik, dan kerangka penelitian yang kuat.</p>
+        <div class="service-price">Negotiable</div>
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ALayanan%3A%20Brainstorming%0ABidang%20studi%20/%20jurusan%3A%0AYang%20ingin%20dibahas%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
-      <div class="service-card fade-up" style="transition-delay:.25s">
-        <div class="service-icon">💬</div>
-        <h3>Bimbingan Akademik</h3>
-        <p>Layanan diskusi dan arahan akademik untuk membantu Anda lebih paham, lebih siap, dan lebih mantap menjalani proses perkuliahan.</p>
+      <div class="service-card fade-up" style="transition-delay:.24s">
+        <div class="service-icon">🖥️</div>
+        <h3>PPT Presentasi</h3>
+        <p>Desain slide profesional, menarik, dan siap presentasi.</p>
+        <div class="service-price">Negotiable</div>
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ALayanan%3A%20PPT%20Presentasi%0ATopik%20presentasi%3A%0AJumlah%20slide%20%28estimasi%29%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
     </div>
   </div>
@@ -671,7 +726,7 @@
         <p class="section-label">FAQ</p>
         <h2 class="section-title">Pertanyaan yang sering muncul</h2>
         <p class="section-sub" style="margin-top:.75rem;">Kalau masih ada yang ingin ditanyakan, langsung hubungi kami lewat WhatsApp.</p>
-        <a href="https://wa.me/6285776269621" class="btn-secondary" style="display:inline-flex; margin-top:1.5rem;" target="_blank">
+        <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20konsultasi%3A%0A%0ALayanan%20yang%20dibutuhkan%3A%0ADetail%20singkat%3A%0ADeadline%3A" class="btn-secondary" style="display:inline-flex; margin-top:1.5rem;" target="_blank">
           💬 Chat dengan kami
         </a>
       </div>
@@ -702,7 +757,7 @@
             Bagaimana cara order?
             <span class="faq-icon">+</span>
           </button>
-          <div class="faq-a">Anda bisa isi form pemesanan atau langsung chat WhatsApp. Setelah itu tim kami akan mereview kebutuhan Anda dan menjelaskan langkah berikutnya.</div>
+          <div class="faq-a">Anda bisa langsung chat WhatsApp. Setelah itu tim kami akan mereview kebutuhan Anda dan menjelaskan langkah berikutnya.</div>
         </div>
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">
@@ -720,10 +775,9 @@
   <div class="cta-inner fade-up">
     <p class="section-label">Mulai Sekarang</p>
     <h2>Kalau tugas mulai bikin pusing,<br>KesiniinAja dulu.</h2>
-    <p>Isi form pemesanan atau hubungi WhatsApp kami untuk mulai konsultasi. Kami bantu pilihkan layanan yang paling pas untuk kebutuhan Anda.</p>
+    <p>hubungi WhatsApp kami untuk mulai konsultasi. Kami bantu pilihkan layanan yang paling pas untuk kebutuhan Anda.</p>
     <div class="cta-actions">
-      <a href="https://forms.gle/xCg6nfavvyhHte4o6" class="btn-gold" target="_blank">Isi Form Pemesanan</a>
-      <a href="https://wa.me/6285776269621" class="btn-outline-white" target="_blank">
+      <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20konsultasi%3A%0A%0ALayanan%20yang%20dibutuhkan%3A%0ADetail%20singkat%3A%0ADeadline%3A" class="btn-outline-white" target="_blank">
         💬 WhatsApp Langsung
       </a>
     </div>
@@ -740,12 +794,11 @@
       <div class="footer-col">
         <h5>Layanan</h5>
         <ul>
-          <li><a href="#layanan">Klinik Jurnal</a></li>
-          <li><a href="#layanan">Makalah Siap Presentasi</a></li>
-          <li><a href="#layanan">Studio PPT Akademik</a></li>
-          <li><a href="#layanan">Pendampingan Skripsi</a></li>
-          <li><a href="#layanan">Layout & Formatting</a></li>
-          <li><a href="#layanan">Bimbingan Akademik</a></li>
+          <li><a href="#layanan">Tugas Kuliah</a></li>
+          <li><a href="#layanan">Makalah</a></li>
+          <li><a href="#layanan">Skripsi / TA</a></li>
+          <li><a href="#layanan">Brainstorming</a></li>
+          <li><a href="#layanan">PPT Presentasi</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -753,7 +806,7 @@
         <ul>
           <li><a href="#cara-kerja">Cara Kerja</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="https://wa.me/6285776269621" target="_blank">WhatsApp</a></li>
+          <li><a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20konsultasi%3A%0A%0ALayanan%20yang%20dibutuhkan%3A%0ADetail%20singkat%3A%0ADeadline%3A" target="_blank">WhatsApp</a></li>
           <li><a href="https://forms.gle/xCg6nfavvyhHte4o6" target="_blank">Form Pemesanan</a></li>
         </ul>
       </div>
