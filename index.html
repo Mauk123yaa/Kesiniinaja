@@ -10,24 +10,26 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy: #1B2B5E;
-    --navy-light: #2D4080;
-    --navy-dark: #111C3E;
-    --cream: #FAF7F2;
-    --cream-deep: #F2EDE3;
-    --gold: #C9962B;
-    --gold-light: #E8B84B;
-    --text: #1A1A2E;
-    --muted: #5C6480;
+    --navy: #5B2DBA;
+    --navy-light: #7047D8;
+    --navy-dark: #2A176A;
+    --cream: #FCFAFF;
+    --cream-deep: #F3EEFF;
+    --gold: #F26B2A;
+    --gold-light: #FF9B45;
+    --magenta: #D90FB7;
+    --cyan: #16B8D9;
+    --text: #17112B;
+    --muted: #675E7A;
     --white: #FFFFFF;
-    --border: rgba(27, 43, 94, 0.12);
+    --border: rgba(91, 45, 186, 0.14);
   }
 
   html { scroll-behavior: smooth; }
 
   body {
     font-family: 'Plus Jakarta Sans', sans-serif;
-    background: var(--cream);
+    background: radial-gradient(circle at top left, rgba(217, 15, 183, 0.07), transparent 32%), radial-gradient(circle at top right, rgba(22, 184, 217, 0.08), transparent 28%), var(--cream);
     color: var(--text);
     overflow-x: hidden;
   }
@@ -36,7 +38,7 @@
     position: sticky;
     top: 0;
     z-index: 100;
-    background: rgba(250, 247, 242, 0.92);
+    background: rgba(252, 250, 255, 0.94);
     backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
@@ -51,14 +53,16 @@
     position: relative;
   }
   .logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--navy);
+    display: inline-flex;
+    align-items: center;
     text-decoration: none;
-    letter-spacing: -0.02em;
   }
-  .logo span { color: var(--gold); }
+  .logo img {
+    height: 42px;
+    width: auto;
+    display: block;
+  }
+  .footer-brand .logo img { height: 52px; }
   .nav-links {
     display: flex;
     align-items: center;
@@ -140,7 +144,7 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: var(--navy);
+    background: linear-gradient(135deg, var(--navy), var(--magenta));
     color: var(--white);
     padding: 0.875rem 1.75rem;
     border-radius: 8px;
@@ -151,7 +155,7 @@
     border: none;
     cursor: pointer;
   }
-  .btn-primary:hover { background: var(--navy-light); transform: translateY(-1px); }
+  .btn-primary:hover { background: linear-gradient(135deg, var(--navy-light), var(--magenta)); transform: translateY(-1px); }
   .btn-secondary {
     display: inline-flex;
     align-items: center;
@@ -207,8 +211,8 @@
     color: var(--white);
   }
   .avatar:first-child { margin-left: 0; }
-  .a1 { background: #3B5BDB; } .a2 { background: #C9962B; }
-  .a3 { background: #2F9E44; } .a4 { background: #E03131; }
+  .a1 { background: #5B2DBA; } .a2 { background: #D90FB7; }
+  .a3 { background: #16B8D9; } .a4 { background: #F26B2A; }
   .card-meta { font-size: 0.8rem; color: var(--muted); }
   .card-meta strong { display: block; color: var(--text); font-size: 0.875rem; font-weight: 600; }
 
@@ -219,8 +223,8 @@
   }
   .progress-bar { height: 6px; background: var(--cream-deep); border-radius: 100px; overflow: hidden; }
   .progress-fill { height: 100%; border-radius: 100px; background: var(--navy); transition: width 1s ease; }
-  .progress-fill.gold { background: var(--gold); }
-  .progress-fill.green { background: #2F9E44; }
+  .progress-fill.gold { background: var(--magenta); }
+  .progress-fill.green { background: var(--cyan); }
 
   .floating-tag {
     position: absolute;
@@ -272,8 +276,8 @@
   }
   .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27, 43, 94, 0.1); }
   .service-card.featured {
-    background: var(--navy-dark);
-    border: 2px solid var(--navy);
+    background: linear-gradient(160deg, var(--navy-dark), var(--navy) 55%, var(--magenta));
+    border: 2px solid rgba(217, 15, 183, 0.35);
     box-shadow: 0 8px 32px rgba(27, 43, 94, 0.2);
     margin-top: 0;
   }
@@ -281,7 +285,7 @@
   .popular-badge {
     position: absolute;
     top: -14px; left: 50%; transform: translateX(-50%);
-    background: var(--gold);
+    background: linear-gradient(135deg, var(--magenta), var(--gold));
     color: var(--white);
     font-size: 0.72rem; font-weight: 700;
     padding: 4px 14px; border-radius: 100px;
@@ -314,7 +318,7 @@
     text-decoration: none;
     transition: background .2s, color .2s;
   }
-  .btn-order:hover { background: var(--navy); color: var(--white); }
+  .btn-order:hover { background: linear-gradient(135deg, var(--navy), var(--magenta)); color: var(--white); }
   .service-card.featured .btn-order {
     background: var(--gold); border-color: var(--gold); color: var(--white);
   }
@@ -402,7 +406,7 @@
     font-weight: 600; font-size: 0.9375rem; text-decoration: none;
     transition: background .2s, transform .15s;
   }
-  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-gold:hover { background: linear-gradient(135deg, var(--navy-light), var(--magenta)); transform: translateY(-1px); }
   .btn-outline-white {
     display: inline-flex; align-items: center; gap: 8px;
     background: transparent; color: var(--white);
@@ -418,7 +422,6 @@
     display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
     padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); margin-bottom: 2rem;
   }
-  .footer-brand .logo { font-size: 1.2rem; color: var(--white); }
   .footer-brand p { font-size: 0.83rem; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 0.75rem; font-weight: 300; max-width: 320px; }
   .footer-col h5 { font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.7); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
   .footer-col ul { list-style: none; }
@@ -469,7 +472,7 @@
 
 <nav>
   <div class="nav-inner">
-    <a href="#" class="logo">Kesiniin<span>Aja</span></a>
+    <a href="#" class="logo" aria-label="KesiniinAja"><img src="assets/logo-kesiniinaja.png" alt="KesiniinAja"></a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#layanan">Layanan</a></li>
       <li><a href="#cara-kerja">Cara Kerja</a></li>
@@ -512,6 +515,9 @@
         <span class="tag-dot"></span> Support aktif berjalan
       </div>
       <div class="hero-card">
+        <div style="display:flex; justify-content:center; margin-bottom:1.25rem;">
+          <img src="assets/logo-kesiniinaja.png" alt="KesiniinAja" style="height:74px; width:auto;">
+        </div>
         <div class="hero-card-header">
           <div class="avatar-stack">
             <div class="avatar a1">JR</div>
@@ -576,7 +582,7 @@
         <div class="popular-badge">⭐ Terpopuler</div>
         <div class="service-icon">🎓</div>
         <h3>Skripsi / TA</h3>
-        <p>Pendampingan dan pengerjaan skripsi per bab dengan analisis mendalam.</p>
+        <p>Pendampingan skripsi/TA, review struktur, analisis, layout, dan konsultasi per bab sesuai kebutuhan.</p>
         <div class="service-price">Negotiable</div>
         <a href="https://wa.me/6285776269621?text=Halo%20KesiniinAja%21%20Saya%20mau%20order%3A%0A%0ANama%3A%0AJurusan%3A%0AAsal%20kampus%3A%0ALayanan%3A%20Skripsi%20/%20TA%0AJudul%20/%20topik%3A%0ABab%20yang%20dibutuhkan%3A%0ADeadline%3A" class="btn-order" target="_blank">Order Ini</a>
       </div>
@@ -786,7 +792,7 @@
   <div class="footer-inner">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#" class="logo">Kesiniin<span style="color:var(--gold)">Aja</span></a>
+        <a href="#" class="logo" aria-label="KesiniinAja"><img src="assets/logo-kesiniinaja.png" alt="KesiniinAja"></a>
         <p>Support akademik untuk mahasiswa yang butuh proses lebih rapi, lebih jelas, dan lebih terarah dalam menghadapi tugas, presentasi, dan karya ilmiah.</p>
       </div>
       <div class="footer-col">
